@@ -8,28 +8,28 @@
       // vamos dar alguns atributos a esta class
       // como :
 
-     // O bot„o que ir· retornar da funÁ„o PagarMP (string)
+     // O bot√£o que ir√° retornar da fun√ß√£o PagarMP (string)
      public $btn_mp;
 
-     // Definiremos o bot„o que ir· retornar, se ser· uma lightbox // do mercado pago ou n„o, como padr„o ser· false. o user ser· 
+     // Definiremos o bot√£o que ir√° retornar, se ser√° uma lightbox // do mercado pago ou n√£o, como padr√£o ser√° false. o user ser√° 
      // redirecionado para o site do mercado pago
      private $lightbox = false;
 
-     // Esta vari·vel recebe uma array com os dados da transaÁ„o
+     // Esta vari√°vel recebe uma array com os dados da transa√ß√£o
      public $info = array();
 
-     // Se for em modo de teste, esta vari·vel recebe true, caso 
-     // contr·rio o sistema estar· em modo de produÁ„o
+     // Se for em modo de teste, esta vari√°vel recebe true, caso 
+     // contr√°rio o sistema estar√° em modo de produ√ß√£o
      private $sandbox = false;
 
      // Suas credenciais do mercado pago
-     private $client_id = "2155770650472302";
-     private $client_secret = "dGYYL3hMt4vB8DPS9HazNzbPQlJy7tI9";
+     private $client_id = "client_id";
+     private $client_secret = "client_secret";
 
      
      public function PagarMP($ref , $nome , $valor , $url){
      // iniciando as credenciais do MP
-     // Os valores de client_id e client_secret s„o informados  aqui
+     // Os valores de client_id e client_secret s√£o informados  aqui
      $mp = new MP($this->client_id, $this->client_secret);
      
     $preference_data = array(   
@@ -58,13 +58,13 @@
 
       $preference = $mp->create_preference($preference_data);
      
-      // Criar link para o bot„o de pagamento normal ou sandbox
+      // Criar link para o bot√£o de pagamento normal ou sandbox
         if($this->sandbox):
          //sandbox
          $mp->sandbox_mode(TRUE);
          $link = $preference["response"]["sandbox_init_point"];
             else:
-            // normal em produÁ„o
+            // normal em produ√ß√£o
             $mp->sandbox_mode(FALSE);
             $link = $preference["response"]["init_point"];
            endif;
@@ -89,7 +89,7 @@
       $mp = new MP($this->client_id, $this->client_secret);
       
       
-      // Dentro da funÁ„o Retorno
+      // Dentro da fun√ß√£o Retorno
       $params = ["access_token" => $mp->get_access_token()];
       // params recebe o token
 
@@ -108,11 +108,11 @@
 
          case "approved"     : $status = "Aprovado";           break;
          case "pending"      : $status = "Pendente";           break;
-         case "in_process"   : $status = "An·lise";            break;
+         case "in_process"   : $status = "An√°lise";            break;
          case "rejected"     : $status = "Rejeitado";          break;
          case "refunded"     : $status = "Devolvido";          break;
          case "cancelled"    : $status = "Cancelado";          break;
-         case "in_mediation" : $status = "MediaÁ„o";           break;
+         case "in_mediation" : $status = "Media√ß√£o";           break;
    
      endswitch;
       
@@ -123,7 +123,7 @@
         break;
          case "account_money" : $forma = "Saldo MP";
         break;
-         case "credit_card"   : $forma = "Cart„o de CrÈdito";
+         case "credit_card"   : $forma = "Cart√£o de Cr√©dito";
         break;
          default : $forma =   $payment_info["response"]["collection"]["payment_type"];
          
